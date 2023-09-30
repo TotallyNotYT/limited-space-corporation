@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://bevnolydmc2k"]
+
+[ext_resource type="Texture2D" uid="uid://dfycxm8hy2jak" path="res://rakete.svg" id="1_esm0e"]
+[ext_resource type="Script" path="res://RigidBody2D.gd" id="1_kr0j0"]
+[ext_resource type="Texture2D" uid="uid://dc4njvgfqudqh" path="res://RocketParticle.svg" id="2_j5xbo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56m65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_esm0e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_egpn0"]
+offsets = PackedFloat32Array(0.0641221, 0.11145, 0.161832, 0.358779, 0.58626, 0.818321, 0.874809, 1)
+colors = PackedColorArray(0.552687, 0.378238, 0.189086, 0.862745, 0.212305, 0.212305, 0.212305, 0.862745, 0.900589, 0.531077, 0.128822, 0.862745, 0.776471, 0.309804, 0, 0.862745, 0.996078, 0.545098, 0.231373, 0.862745, 0.796078, 0.0901961, 0.160784, 1, 0.796078, 0.0901961, 0.160784, 0.503597, 0.796078, 0.0901961, 0.160784, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ww2j"]
+radius = 35.0
+height = 90.0
+
+[node name="physicsRocket" type="RigidBody2D"]
+mass = 4.78
+script = ExtResource("1_kr0j0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.249117, 0.249117)
+sprite_frames = SubResource("SpriteFrames_56m65")
+
+[node name="RocketParticlesRight" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(12, 39)
+emitting = false
+amount = 50
+lifetime = 0.3
+texture = ExtResource("2_j5xbo")
+direction = Vector2(0, 1)
+spread = 24.92
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.42
+initial_velocity_max = 156.25
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_egpn0")
+
+[node name="RocketParticlesLeft" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(-12, 39)
+emitting = false
+amount = 50
+lifetime = 0.3
+texture = ExtResource("2_j5xbo")
+direction = Vector2(0, 1)
+spread = 24.92
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.42
+initial_velocity_max = 156.25
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_egpn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7ww2j")

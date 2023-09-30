@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cylsrgo5e4vgu"]
+[gd_scene load_steps=4 format=3 uid="uid://cylsrgo5e4vgu"]
 
+[ext_resource type="Script" path="res://space.gd" id="1_tsyn7"]
 [ext_resource type="Texture2D" uid="uid://dfycxm8hy2jak" path="res://rakete.svg" id="1_wshdt"]
 [ext_resource type="Texture2D" uid="uid://dm8qqgus3kn7u" path="res://planetEarthlike.svg" id="2_3j3os"]
 
 [node name="Space" type="Node2D"]
+script = ExtResource("1_tsyn7")
 
 [node name="TheSpaceButton" type="Button" parent="."]
 offset_left = 461.0
@@ -28,3 +30,5 @@ offset = Vector2(-60.5665, -9.7688)
 position = Vector2(937.667, 459.647)
 scale = Vector2(0.486598, 0.486598)
 texture = ExtResource("2_3j3os")
+
+[connection signal="pressed" from="TheSpaceButton" to="." method="_on_the_space_button_pressed"]

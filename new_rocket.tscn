@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://d24soas0eo7m1"]
+
+[ext_resource type="Script" path="res://RigidBody2D.gd" id="1_76qvu"]
+[ext_resource type="Texture2D" uid="uid://dfycxm8hy2jak" path="res://rakete.svg" id="2_20i81"]
+[ext_resource type="Texture2D" uid="uid://dc4njvgfqudqh" path="res://RocketParticle.svg" id="3_od1k4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yv8ov"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_20i81")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_oa00t"]
+offsets = PackedFloat32Array(0.0641221, 0.11145, 0.161832, 0.358779, 0.58626, 0.818321, 0.874809, 1)
+colors = PackedColorArray(0.552687, 0.378238, 0.189086, 0.862745, 0.212305, 0.212305, 0.212305, 0.862745, 0.900589, 0.531077, 0.128822, 0.862745, 0.776471, 0.309804, 0, 0.862745, 0.996078, 0.545098, 0.231373, 0.862745, 0.796078, 0.0901961, 0.160784, 1, 0.796078, 0.0901961, 0.160784, 0.503597, 0.796078, 0.0901961, 0.160784, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nej26"]
+radius = 35.0
+height = 90.0
+
+[node name="newRocket" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("1_76qvu")
+
+[node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+scale = Vector2(0.249117, 0.249117)
+sprite_frames = SubResource("SpriteFrames_yv8ov")
+
+[node name="RocketParticlesRight" type="CPUParticles2D" parent="RigidBody2D"]
+show_behind_parent = true
+position = Vector2(12, 39)
+emitting = false
+amount = 50
+lifetime = 0.3
+texture = ExtResource("3_od1k4")
+direction = Vector2(0, 1)
+spread = 24.92
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.42
+initial_velocity_max = 156.25
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_oa00t")
+
+[node name="RocketParticlesLeft" type="CPUParticles2D" parent="RigidBody2D"]
+show_behind_parent = true
+position = Vector2(-12, 39)
+emitting = false
+amount = 50
+lifetime = 0.3
+texture = ExtResource("3_od1k4")
+direction = Vector2(0, 1)
+spread = 24.92
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.42
+initial_velocity_max = 156.25
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_oa00t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CapsuleShape2D_nej26")
