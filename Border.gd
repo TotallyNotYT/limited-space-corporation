@@ -1,6 +1,8 @@
 extends StaticBody2D
 
 @onready var rocket: RigidBody2D = $"../physicsRocket"
+@onready var collisionRight: CollisionShape2D = $CollisionShapeRight
+@onready var collisionLeft: CollisionShape2D = $CollisionShapeLeft
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,4 +11,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.y = rocket.position.y
+	collisionRight.position.y = rocket.position.y
+	collisionLeft.position.y = rocket.position.y

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy10dbtyr817n"]
+[gd_scene load_steps=12 format=3 uid="uid://dy10dbtyr817n"]
 
 [ext_resource type="Script" path="res://level_flying.gd" id="1_04dgp"]
 [ext_resource type="Texture2D" uid="uid://c1fl7stpf6f2i" path="res://Assets/firemaybe2.svg" id="2_2o8rc"]
@@ -7,9 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://b08ic6uocl8iv" path="res://Assets/background.svg" id="5_cb22y"]
 [ext_resource type="Script" path="res://Timer.gd" id="6_hpknk"]
 [ext_resource type="PackedScene" uid="uid://jggh3fjnielu" path="res://asteroid.tscn" id="7_eac8v"]
+[ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="8_6e1wn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvedx"]
-size = Vector2(2480.5, 62)
+size = Vector2(2501.25, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upihe"]
+size = Vector2(3412, 399.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yr4dx"]
+radius = 515.004
 
 [node name="LevelFlying" type="Node2D"]
 script = ExtResource("1_04dgp")
@@ -35,7 +42,7 @@ scale_amount_max = 0.02
 script = ExtResource("3_6bcki")
 
 [node name="CollisionShapeRight" type="CollisionShape2D" parent="Border"]
-position = Vector2(1673, -615)
+position = Vector2(1673, -604.625)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_wvedx")
 
@@ -43,6 +50,10 @@ shape = SubResource("RectangleShape2D_wvedx")
 position = Vector2(-1673, -588.75)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_wvedx")
+
+[node name="CollisionShapeBottom" type="CollisionShape2D" parent="Border"]
+position = Vector2(1, 842)
+shape = SubResource("RectangleShape2D_upihe")
 
 [node name="physicsRocket" parent="." instance=ExtResource("4_unmml")]
 
@@ -63,9 +74,20 @@ initial_position = 1
 ok_button_text = "Restart"
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 script = ExtResource("6_hpknk")
 objectScene = ExtResource("7_eac8v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 648)
+shape = SubResource("CircleShape2D_yr4dx")
+
+[node name="PlanetEarthlike" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+scale = Vector2(2.01849, 2.01849)
+texture = ExtResource("8_6e1wn")
 
 [connection signal="canceled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

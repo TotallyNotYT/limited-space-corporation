@@ -33,16 +33,17 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqs7a"]
-radius = 54.0
-height = 208.0
+radius = 34.0
+height = 128.0
 
 [node name="Asteroid" type="RigidBody2D"]
 script = ExtResource("1_vaqf2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 7.62939e-06)
-scale = Vector2(0.0854835, 0.0854835)
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.0531086, 0.0531086)
 sprite_frames = SubResource("SpriteFrames_n67xh")
+animation = &"alternative2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
