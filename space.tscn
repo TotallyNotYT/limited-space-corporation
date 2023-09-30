@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cylsrgo5e4vgu"]
+
+[ext_resource type="Texture2D" uid="uid://dfycxm8hy2jak" path="res://rakete.svg" id="1_wshdt"]
+[ext_resource type="Texture2D" uid="uid://dm8qqgus3kn7u" path="res://planetEarthlike.svg" id="2_3j3os"]
+
+[node name="Space" type="Node2D"]
+
+[node name="TheSpaceButton" type="Button" parent="."]
+offset_left = 461.0
+offset_top = 78.0
+offset_right = 738.0
+offset_bottom = 109.0
+text = "Start flying"
+
+[node name="DaRocket" type="Sprite2D" parent="."]
+position = Vector2(583, 251)
+rotation = 1.5708
+scale = Vector2(0.471731, 0.471731)
+texture = ExtResource("1_wshdt")
+
+[node name="PlanetEarthlike" type="Sprite2D" parent="."]
+position = Vector2(264, 465)
+scale = Vector2(0.511834, 0.511834)
+texture = ExtResource("2_3j3os")
+offset = Vector2(-60.5665, -9.7688)
+
+[node name="PlanetEarthlike2" type="Sprite2D" parent="."]
+position = Vector2(937.667, 459.647)
+scale = Vector2(0.486598, 0.486598)
+texture = ExtResource("2_3j3os")

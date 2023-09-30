@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dy10dbtyr817n"]
+
+[ext_resource type="Script" path="res://level_flying.gd" id="1_04dgp"]
+[ext_resource type="Texture2D" uid="uid://dfycxm8hy2jak" path="res://rakete.svg" id="1_8w22y"]
+[ext_resource type="Texture2D" uid="uid://b7ncxqh3wdec6" path="res://firemaybe2.svg" id="2_osin6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yeq8i"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2a0fe"]
+radius = 35.0
+height = 90.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k4bjg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8w22y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[node name="LevelFlying" type="Node2D"]
+script = ExtResource("1_04dgp")
+
+[node name="RocketParticles" type="CPUParticles2D" parent="."]
+position = Vector2(779, 330)
+texture = ExtResource("2_osin6")
+emitting = false
+amount = 100
+lifetime = 0.3
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.42
+initial_velocity_max = 156.25
+scale_amount_min = 0.1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(567, 364)
+shape = SubResource("CapsuleShape2D_2a0fe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/CollisionShape2D"]
+scale = Vector2(0.249117, 0.249117)
+sprite_frames = SubResource("SpriteFrames_k4bjg")
