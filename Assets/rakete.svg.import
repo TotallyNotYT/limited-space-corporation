@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm8qqgus3kn7u"
-path="res://.godot/imported/planetEarthlike.svg-ad2cc583655e816d1df73c8a06094f8a.ctex"
+uid="uid://duswwnsnwbmbe"
+path="res://.godot/imported/rakete.svg-2008a5bfe6f9e06b25b231fb24f0a95b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planetEarthlike.svg"
-dest_files=["res://.godot/imported/planetEarthlike.svg-ad2cc583655e816d1df73c8a06094f8a.ctex"]
+source_file="res://Assets/rakete.svg"
+dest_files=["res://.godot/imported/rakete.svg-2008a5bfe6f9e06b25b231fb24f0a95b.ctex"]
 
 [params]
 

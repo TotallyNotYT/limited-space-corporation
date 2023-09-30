@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy10dbtyr817n"]
+[gd_scene load_steps=9 format=3 uid="uid://dy10dbtyr817n"]
 
 [ext_resource type="Script" path="res://level_flying.gd" id="1_04dgp"]
-[ext_resource type="Texture2D" uid="uid://b7ncxqh3wdec6" path="res://firemaybe2.svg" id="2_osin6"]
+[ext_resource type="Texture2D" uid="uid://c1fl7stpf6f2i" path="res://Assets/firemaybe2.svg" id="2_2o8rc"]
+[ext_resource type="Script" path="res://Border.gd" id="3_6bcki"]
 [ext_resource type="PackedScene" uid="uid://bevnolydmc2k" path="res://physics_rocket.tscn" id="4_unmml"]
-[ext_resource type="Texture2D" uid="uid://k6plrif0pa3g" path="res://movingBackground.svg" id="6_n2dkd"]
+[ext_resource type="Texture2D" uid="uid://b08ic6uocl8iv" path="res://Assets/background.svg" id="5_cb22y"]
+[ext_resource type="Script" path="res://Timer.gd" id="6_hpknk"]
+[ext_resource type="PackedScene" uid="uid://jggh3fjnielu" path="res://asteroid.tscn" id="7_eac8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvedx"]
+size = Vector2(2480.5, 62)
 
 [node name="LevelFlying" type="Node2D"]
 script = ExtResource("1_04dgp")
@@ -16,7 +22,7 @@ position = Vector2(123, 78)
 emitting = false
 amount = 50
 lifetime = 0.3
-texture = ExtResource("2_osin6")
+texture = ExtResource("2_2o8rc")
 direction = Vector2(0, 1)
 spread = 24.92
 gravity = Vector2(0, 0)
@@ -25,6 +31,19 @@ initial_velocity_max = 156.25
 scale_amount_min = 0.01
 scale_amount_max = 0.02
 
+[node name="Border" type="StaticBody2D" parent="."]
+script = ExtResource("3_6bcki")
+
+[node name="CollisionShapeRight" type="CollisionShape2D" parent="Border"]
+position = Vector2(1673, -615)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_wvedx")
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Border"]
+position = Vector2(-1673, -588.75)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_wvedx")
+
 [node name="physicsRocket" parent="." instance=ExtResource("4_unmml")]
 
 [node name="Camera2D" type="Camera2D" parent="physicsRocket"]
@@ -32,12 +51,22 @@ scale_amount_max = 0.02
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="Layer1" type="ParallaxLayer" parent="Background"]
-motion_mirroring = Vector2(0, 680)
+scale = Vector2(2, 2)
+motion_mirroring = Vector2(0, 1826)
 
 [node name="Sprite" type="Sprite2D" parent="Background/Layer1"]
-scale = Vector2(2, 2)
-texture = ExtResource("6_n2dkd")
+texture = ExtResource("5_cb22y")
 
-[node name="Firemaybe2" type="Sprite2D" parent="."]
-position = Vector2(234, 181)
-texture = ExtResource("2_osin6")
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Restart?"
+initial_position = 1
+ok_button_text = "Restart"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("6_hpknk")
+objectScene = ExtResource("7_eac8v")
+
+[connection signal="canceled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://jggh3fjnielu"]
+
+[ext_resource type="Texture2D" uid="uid://dmru3knlmowln" path="res://Assets/.asteroid3.svg" id="1_nt3fc"]
+[ext_resource type="Script" path="res://asteroid.gd" id="1_vaqf2"]
+[ext_resource type="Texture2D" uid="uid://dn3pqdl25ixek" path="res://Assets/.asteroid2.svg" id="2_hhu1o"]
+[ext_resource type="Texture2D" uid="uid://lb8uhra6f4t7" path="res://Assets/.asteroid1.svg" id="3_nhn8d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n67xh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nt3fc")
+}],
+"loop": true,
+"name": &"alternative1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hhu1o")
+}],
+"loop": true,
+"name": &"alternative2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nhn8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqs7a"]
+radius = 54.0
+height = 208.0
+
+[node name="Asteroid" type="RigidBody2D"]
+script = ExtResource("1_vaqf2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 7.62939e-06)
+scale = Vector2(0.0854835, 0.0854835)
+sprite_frames = SubResource("SpriteFrames_n67xh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_oqs7a")

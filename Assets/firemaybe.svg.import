@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7ncxqh3wdec6"
-path="res://.godot/imported/firemaybe2.svg-69de8bf7a1958585cff1c581a7208fcf.ctex"
+uid="uid://dssiqlfeh63t7"
+path="res://.godot/imported/firemaybe.svg-edf272d0e9f366ad3443004291bf540e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://firemaybe2.svg"
-dest_files=["res://.godot/imported/firemaybe2.svg-69de8bf7a1958585cff1c581a7208fcf.ctex"]
+source_file="res://Assets/firemaybe.svg"
+dest_files=["res://.godot/imported/firemaybe.svg-edf272d0e9f366ad3443004291bf540e.ctex"]
 
 [params]
 

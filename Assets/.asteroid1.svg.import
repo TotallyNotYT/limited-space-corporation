@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc4njvgfqudqh"
-path="res://.godot/imported/RocketParticle.svg-01c5006338265e95d50a18897f4dd5a7.ctex"
+uid="uid://lb8uhra6f4t7"
+path="res://.godot/imported/.asteroid1.svg-1e8776bb1507da14f7516da7db98bc1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RocketParticle.svg"
-dest_files=["res://.godot/imported/RocketParticle.svg-01c5006338265e95d50a18897f4dd5a7.ctex"]
+source_file="res://Assets/.asteroid1.svg"
+dest_files=["res://.godot/imported/.asteroid1.svg-1e8776bb1507da14f7516da7db98bc1d.ctex"]
 
 [params]
 

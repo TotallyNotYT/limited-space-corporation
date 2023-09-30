@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfycxm8hy2jak"
-path="res://.godot/imported/rakete.svg-fdae950603feb28953aa5e2bc4a093de.ctex"
+uid="uid://b08ic6uocl8iv"
+path="res://.godot/imported/background.svg-2c0b58724f1bd2a63cb05af7dcf40101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rakete.svg"
-dest_files=["res://.godot/imported/rakete.svg-fdae950603feb28953aa5e2bc4a093de.ctex"]
+source_file="res://Assets/background.svg"
+dest_files=["res://.godot/imported/background.svg-2c0b58724f1bd2a63cb05af7dcf40101.ctex"]
 
 [params]
 

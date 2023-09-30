@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k6plrif0pa3g"
-path="res://.godot/imported/movingBackground.svg-33ce608efb46ccdb3af20872acee6df5.ctex"
+uid="uid://cntuvkmlbpie4"
+path="res://.godot/imported/planetEarthlike.svg-0d9f9fd423f49556663ed3e91908eec2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://movingBackground.svg"
-dest_files=["res://.godot/imported/movingBackground.svg-33ce608efb46ccdb3af20872acee6df5.ctex"]
+source_file="res://Assets/planetEarthlike.svg"
+dest_files=["res://.godot/imported/planetEarthlike.svg-0d9f9fd423f49556663ed3e91908eec2.ctex"]
 
 [params]
 
