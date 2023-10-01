@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bevnolydmc2k"]
+[gd_scene load_steps=9 format=3 uid="uid://bevnolydmc2k"]
 
 [ext_resource type="Script" path="res://RigidBody2D.gd" id="1_kr0j0"]
 [ext_resource type="Texture2D" uid="uid://duswwnsnwbmbe" path="res://Assets/rakete.svg" id="2_addv2"]
 [ext_resource type="Texture2D" uid="uid://dyoxt5pc2ks0d" path="res://Assets/.explosion.svg" id="2_r5x74"]
 [ext_resource type="Texture2D" uid="uid://dh6shfiator47" path="res://Assets/RocketParticle.svg" id="3_bsikt"]
+[ext_resource type="AudioStream" uid="uid://bcyrm6itofdoh" path="res://Assets/audio/thrusterSound.wav" id="5_7q60w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_56m65"]
 animations = [{
@@ -74,3 +75,6 @@ color_ramp = SubResource("Gradient_egpn0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7ww2j")
+
+[node name="ThrusterSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7q60w")

@@ -3,11 +3,14 @@ extends Node2D
 @onready var rocketParticleLeft: CPUParticles2D = $physicsRocket/RocketParticlesLeft
 @onready var rocketParticleRight: CPUParticles2D = $physicsRocket/RocketParticlesRight
 @onready var physicsRocket: RigidBody2D = $physicsRocket
+@onready var winSound: AudioStreamPlayer = $WinSound
+@onready var landingPlanet: AnimatedSprite2D = $StaticBodyStartPlanet/CollisionShape2D/PlanetSprite2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	winSound.play()
+	landingPlanet.animation = Global.endingPlanet
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

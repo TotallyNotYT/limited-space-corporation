@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://se7w8yew7yv4"]
+
+[ext_resource type="Script" path="res://area_end_planet.gd" id="1_36yd3"]
+[ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="1_sqwvr"]
+[ext_resource type="Texture2D" uid="uid://cxvm5tis7vvpw" path="res://Assets/.mars.svg" id="2_fu6wo"]
+[ext_resource type="Texture2D" uid="uid://b3gkl4qhon3we" path="res://Assets/.radioactivePlanet.svg" id="3_t2xg4"]
+[ext_resource type="Texture2D" uid="uid://b4t1e4vsx7ooc" path="res://Assets/.saturnlikePlanet.svg" id="4_vs6a6"]
+[ext_resource type="Texture2D" uid="uid://dj5ytttklbtem" path="res://Assets/.venuslikePlanet.svg" id="5_d0wrl"]
+[ext_resource type="Texture2D" uid="uid://c7821573hubgh" path="res://Assets/.yellowPlanet.svg" id="6_nvg28"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rgdi"]
+radius = 515.004
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qb6pq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sqwvr")
+}],
+"loop": true,
+"name": &"earth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fu6wo")
+}],
+"loop": true,
+"name": &"mars",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_t2xg4")
+}],
+"loop": true,
+"name": &"radio",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vs6a6")
+}],
+"loop": true,
+"name": &"saturn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_d0wrl")
+}],
+"loop": true,
+"name": &"venus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nvg28")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[node name="AreaEndPlanet" type="Area2D"]
+position = Vector2(1, -1884)
+scale = Vector2(2.01849, 2.01849)
+script = ExtResource("1_36yd3")
+
+[node name="StaticBodyStartPlanet" type="StaticBody2D" parent="."]
+position = Vector2(-0.49542, 933.37)
+scale = Vector2(0.49542, 0.49542)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyStartPlanet"]
+position = Vector2(0, -1884)
+shape = SubResource("CircleShape2D_0rgdi")
+
+[node name="PlanetSprite2d" type="AnimatedSprite2D" parent="StaticBodyStartPlanet/CollisionShape2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qb6pq")
+animation = &"mars"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(0.49542, 0.49542)
+shape = SubResource("CircleShape2D_0rgdi")
+
+[node name="PlanetSprite2d" type="AnimatedSprite2D" parent="CollisionShape2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qb6pq")
+animation = &"mars"

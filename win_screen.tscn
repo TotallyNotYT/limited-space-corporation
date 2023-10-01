@@ -1,14 +1,71 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3vyhqb58fuwe"]
+[gd_scene load_steps=15 format=3 uid="uid://d3vyhqb58fuwe"]
 
 [ext_resource type="Script" path="res://win_screen.gd" id="1_fir4h"]
 [ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="1_vithw"]
 [ext_resource type="PackedScene" uid="uid://bevnolydmc2k" path="res://physics_rocket.tscn" id="2_pvx7t"]
+[ext_resource type="Texture2D" uid="uid://cxvm5tis7vvpw" path="res://Assets/.mars.svg" id="3_5cuj8"]
 [ext_resource type="Texture2D" uid="uid://b08ic6uocl8iv" path="res://Assets/background.svg" id="4_0k27i"]
 [ext_resource type="Texture2D" uid="uid://dyoxt5pc2ks0d" path="res://Assets/.explosion.svg" id="4_4cur0"]
+[ext_resource type="Texture2D" uid="uid://b3gkl4qhon3we" path="res://Assets/.radioactivePlanet.svg" id="4_qlx64"]
 [ext_resource type="Texture2D" uid="uid://lb8uhra6f4t7" path="res://Assets/.asteroid1.svg" id="4_vqtdi"]
+[ext_resource type="Texture2D" uid="uid://b4t1e4vsx7ooc" path="res://Assets/.saturnlikePlanet.svg" id="5_uwu2d"]
+[ext_resource type="Texture2D" uid="uid://dj5ytttklbtem" path="res://Assets/.venuslikePlanet.svg" id="6_6uox6"]
+[ext_resource type="Texture2D" uid="uid://c7821573hubgh" path="res://Assets/.yellowPlanet.svg" id="7_2i0ri"]
+[ext_resource type="AudioStream" uid="uid://to84hn3y8r3l" path="res://Assets/audio/win.wav" id="7_a6ddr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rr6d7"]
 radius = 256.236
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i5l5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vithw")
+}],
+"loop": true,
+"name": &"earth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5cuj8")
+}],
+"loop": true,
+"name": &"mars",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qlx64")
+}],
+"loop": true,
+"name": &"radio",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_uwu2d")
+}],
+"loop": true,
+"name": &"saturn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6uox6")
+}],
+"loop": true,
+"name": &"venus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2i0ri")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
 
 [node name="WinScreen" type="Node2D"]
 script = ExtResource("1_fir4h")
@@ -19,8 +76,9 @@ position = Vector2(-401, 254)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyStartPlanet"]
 shape = SubResource("CircleShape2D_rr6d7")
 
-[node name="PlanetEarthlike" type="Sprite2D" parent="StaticBodyStartPlanet/CollisionShape2D"]
-texture = ExtResource("1_vithw")
+[node name="PlanetSprite2D" type="AnimatedSprite2D" parent="StaticBodyStartPlanet/CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_i5l5t")
+animation = &"earth"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -86,6 +144,9 @@ icon = ExtResource("4_vqtdi")
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_0k27i")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_a6ddr")
 
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://jggh3fjnielu"]
+[gd_scene load_steps=9 format=3 uid="uid://jggh3fjnielu"]
 
 [ext_resource type="Texture2D" uid="uid://dmru3knlmowln" path="res://Assets/.asteroid3.svg" id="1_nt3fc"]
 [ext_resource type="Script" path="res://asteroid.gd" id="1_vaqf2"]
 [ext_resource type="Texture2D" uid="uid://dn3pqdl25ixek" path="res://Assets/.asteroid2.svg" id="2_hhu1o"]
 [ext_resource type="Texture2D" uid="uid://lb8uhra6f4t7" path="res://Assets/.asteroid1.svg" id="3_nhn8d"]
+[ext_resource type="AudioStream" uid="uid://byt8qmnmriohs" path="res://Assets/audio/damage.wav" id="5_13qn8"]
+[ext_resource type="AudioStream" uid="uid://cl3hkswfi056h" path="res://Assets/audio/death.wav" id="6_egdgd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n67xh"]
 animations = [{
@@ -55,6 +57,12 @@ rotation = 1.5708
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_oqs7a")
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_13qn8")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_egdgd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

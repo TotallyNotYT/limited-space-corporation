@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy10dbtyr817n"]
+[gd_scene load_steps=16 format=3 uid="uid://dy10dbtyr817n"]
 
 [ext_resource type="Script" path="res://level_flying.gd" id="1_04dgp"]
 [ext_resource type="Texture2D" uid="uid://c1fl7stpf6f2i" path="res://Assets/firemaybe2.svg" id="2_2o8rc"]
@@ -7,18 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://b08ic6uocl8iv" path="res://Assets/background.svg" id="5_cb22y"]
 [ext_resource type="Script" path="res://Timer.gd" id="6_hpknk"]
 [ext_resource type="PackedScene" uid="uid://jggh3fjnielu" path="res://asteroid.tscn" id="7_eac8v"]
-[ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="8_6e1wn"]
+[ext_resource type="PackedScene" uid="uid://se7w8yew7yv4" path="res://area_end_planet.tscn" id="8_1iwee"]
 [ext_resource type="Script" path="res://ProgressBar.gd" id="9_ar37m"]
+[ext_resource type="Texture2D" uid="uid://d0bwn74k3767w" path="res://Assets/.restartButton.png" id="9_e4pi1"]
 [ext_resource type="Script" path="res://Health.gd" id="9_haeb2"]
+[ext_resource type="PackedScene" uid="uid://0cp1ly5dsix7" path="res://start_planet.tscn" id="9_nqsp3"]
+[ext_resource type="Texture2D" uid="uid://5shrg8f2g1s7" path="res://Assets/.homeButton.png" id="10_6jxun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvedx"]
 size = Vector2(2501.25, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upihe"]
 size = Vector2(3412, 399.5)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yr4dx"]
-radius = 515.004
 
 [node name="LevelFlying" type="Node2D"]
 script = ExtResource("1_04dgp")
@@ -86,47 +86,59 @@ autostart = true
 script = ExtResource("6_hpknk")
 objectScene = ExtResource("7_eac8v")
 
-[node name="AreaEndPlanet" type="Area2D" parent="."]
-position = Vector2(1, -1884)
-scale = Vector2(2.01849, 2.01849)
+[node name="AreaEndPlanet" parent="." instance=ExtResource("8_1iwee")]
 
-[node name="StaticBodyStartPlanet" type="StaticBody2D" parent="AreaEndPlanet"]
-position = Vector2(-0.49542, 933.37)
-scale = Vector2(0.49542, 0.49542)
+[node name="StartPlanet" parent="." instance=ExtResource("9_nqsp3")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaEndPlanet/StaticBodyStartPlanet"]
-position = Vector2(0, -1884)
-shape = SubResource("CircleShape2D_yr4dx")
-
-[node name="PlanetEarthlike" type="Sprite2D" parent="AreaEndPlanet/StaticBodyStartPlanet/CollisionShape2D"]
-scale = Vector2(2.01849, 2.01849)
-texture = ExtResource("8_6e1wn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaEndPlanet"]
+[node name="CanvasLayerRestart" type="CanvasLayer" parent="."]
 visible = false
-scale = Vector2(0.49542, 0.49542)
-shape = SubResource("CircleShape2D_yr4dx")
 
-[node name="PlanetEarthlike" type="Sprite2D" parent="AreaEndPlanet/CollisionShape2D"]
-visible = false
-scale = Vector2(2.01849, 2.01849)
-texture = ExtResource("8_6e1wn")
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayerRestart"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.7
+offset_left = -1874.5
+offset_top = -2063.5
+offset_right = 1874.5
+offset_bottom = 2063.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="StaticBodyStartPlanet" type="StaticBody2D" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerRestart/CenterContainer"]
+layout_mode = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyStartPlanet"]
-position = Vector2(0, 648)
-shape = SubResource("CircleShape2D_yr4dx")
+[node name="GameOverHeader" type="Label" parent="CanvasLayerRestart/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "Game over!"
+horizontal_alignment = 1
 
-[node name="PlanetEarthlike" type="Sprite2D" parent="StaticBodyStartPlanet/CollisionShape2D"]
-scale = Vector2(2.01849, 2.01849)
-texture = ExtResource("8_6e1wn")
+[node name="GameOverDesc" type="Label" parent="CanvasLayerRestart/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Try again?"
+horizontal_alignment = 1
 
-[node name="ConfirmationDialogDeath" type="ConfirmationDialog" parent="."]
-title = "Game over!"
-initial_position = 1
-ok_button_text = "Try again"
-cancel_button_text = "Go back"
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerRestart/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayerRestart/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="ButtonRestart" type="Button" parent="CanvasLayerRestart/CenterContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+icon = ExtResource("9_e4pi1")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayerRestart/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="ButtonHome" type="Button" parent="CanvasLayerRestart/CenterContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+icon = ExtResource("10_6jxun")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -165,5 +177,5 @@ size_flags_horizontal = 3
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
 [connection signal="body_entered" from="AreaEndPlanet" to="." method="_on_area_end_planet_body_entered"]
-[connection signal="canceled" from="ConfirmationDialogDeath" to="." method="_on_confirmation_dialog_death_canceled"]
-[connection signal="confirmed" from="ConfirmationDialogDeath" to="." method="_on_confirmation_dialog_death_confirmed"]
+[connection signal="pressed" from="CanvasLayerRestart/CenterContainer/VBoxContainer/HBoxContainer/MarginContainer2/ButtonRestart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="CanvasLayerRestart/CenterContainer/VBoxContainer/HBoxContainer/MarginContainer/ButtonHome" to="." method="_on_button_home_pressed"]

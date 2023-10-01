@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://0cp1ly5dsix7"]
+
+[ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="1_7ml0h"]
+[ext_resource type="Texture2D" uid="uid://cxvm5tis7vvpw" path="res://Assets/.mars.svg" id="2_7cvfl"]
+[ext_resource type="Texture2D" uid="uid://b3gkl4qhon3we" path="res://Assets/.radioactivePlanet.svg" id="3_t51f4"]
+[ext_resource type="Texture2D" uid="uid://b4t1e4vsx7ooc" path="res://Assets/.saturnlikePlanet.svg" id="4_wvec1"]
+[ext_resource type="Texture2D" uid="uid://dj5ytttklbtem" path="res://Assets/.venuslikePlanet.svg" id="5_txghy"]
+[ext_resource type="Texture2D" uid="uid://c7821573hubgh" path="res://Assets/.yellowPlanet.svg" id="6_2wx3m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crllq"]
+radius = 515.004
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eskhm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7ml0h")
+}],
+"loop": true,
+"name": &"earth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7cvfl")
+}],
+"loop": true,
+"name": &"mars",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_t51f4")
+}],
+"loop": true,
+"name": &"radio",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wvec1")
+}],
+"loop": true,
+"name": &"saturn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_txghy")
+}],
+"loop": true,
+"name": &"venus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2wx3m")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[node name="StartPlanet" type="Node2D"]
+
+[node name="StaticBodyStartPlanet" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyStartPlanet"]
+position = Vector2(0, 648)
+shape = SubResource("CircleShape2D_crllq")
+
+[node name="PlanetSprite2D" type="AnimatedSprite2D" parent="StaticBodyStartPlanet/CollisionShape2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_eskhm")
+animation = &"earth"

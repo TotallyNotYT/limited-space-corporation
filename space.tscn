@@ -1,34 +1,122 @@
-[gd_scene load_steps=4 format=3 uid="uid://cylsrgo5e4vgu"]
+[gd_scene load_steps=11 format=3 uid="uid://cylsrgo5e4vgu"]
 
 [ext_resource type="Script" path="res://space.gd" id="1_tsyn7"]
 [ext_resource type="Texture2D" uid="uid://duswwnsnwbmbe" path="res://Assets/rakete.svg" id="2_0bdtd"]
 [ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="3_0x275"]
+[ext_resource type="Texture2D" uid="uid://b08ic6uocl8iv" path="res://Assets/background.svg" id="4_ha126"]
+[ext_resource type="Texture2D" uid="uid://cxvm5tis7vvpw" path="res://Assets/.mars.svg" id="5_d2saj"]
+[ext_resource type="Texture2D" uid="uid://b3gkl4qhon3we" path="res://Assets/.radioactivePlanet.svg" id="6_jq4rc"]
+[ext_resource type="Texture2D" uid="uid://b4t1e4vsx7ooc" path="res://Assets/.saturnlikePlanet.svg" id="7_qbxpb"]
+[ext_resource type="Texture2D" uid="uid://dj5ytttklbtem" path="res://Assets/.venuslikePlanet.svg" id="8_2xiev"]
+[ext_resource type="Texture2D" uid="uid://c7821573hubgh" path="res://Assets/.yellowPlanet.svg" id="9_2jt5v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crv1p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0x275")
+}],
+"loop": true,
+"name": &"earth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_d2saj")
+}],
+"loop": true,
+"name": &"mars",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_jq4rc")
+}],
+"loop": true,
+"name": &"radio",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qbxpb")
+}],
+"loop": true,
+"name": &"saturn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_2xiev")
+}],
+"loop": true,
+"name": &"venus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2jt5v")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_tsyn7")
 
-[node name="TheSpaceButton" type="Button" parent="."]
-offset_left = 461.0
-offset_top = 78.0
-offset_right = 738.0
-offset_bottom = 109.0
+[node name="StartDesc" type="Label" parent="."]
+offset_left = 178.0
+offset_top = 289.0
+offset_right = 313.0
+offset_bottom = 326.0
+theme_type_variation = &"HeaderMedium"
+text = "Departure"
+
+[node name="DestDesc" type="Label" parent="."]
+offset_left = 863.0
+offset_top = 289.0
+offset_right = 998.0
+offset_bottom = 326.0
+theme_type_variation = &"HeaderMedium"
+text = "Destination"
+
+[node name="ButtonDesc" type="Label" parent="."]
+offset_left = 517.0
+offset_top = 357.0
+offset_right = 641.0
+offset_bottom = 394.0
+theme_type_variation = &"HeaderMedium"
 text = "Start flying"
 
-[node name="DaRocket" type="Sprite2D" parent="."]
-position = Vector2(583, 251)
+[node name="TheSpaceButton" type="Button" parent="."]
+offset_left = 672.0
+offset_top = 192.0
+offset_right = 963.0
+offset_bottom = 551.0
 rotation = 1.5708
-scale = Vector2(0.471731, 0.471731)
-texture = ExtResource("2_0bdtd")
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_0bdtd")
 
-[node name="PlanetEarthlike" type="Sprite2D" parent="."]
-position = Vector2(264, 465)
-scale = Vector2(0.511834, 0.511834)
-texture = ExtResource("3_0x275")
-offset = Vector2(-60.5665, -9.7688)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
 
-[node name="PlanetEarthlike2" type="Sprite2D" parent="."]
-position = Vector2(956, 464)
-scale = Vector2(0.512, 0.512)
-texture = ExtResource("3_0x275")
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_ha126")
+
+[node name="StartPlanetSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(247, 468)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_crv1p")
+animation = &"earth"
+
+[node name="EndPlanetSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(927, 464)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_crv1p")
+animation = &"earth"
 
 [connection signal="pressed" from="TheSpaceButton" to="." method="_on_the_space_button_pressed"]
