@@ -13,3 +13,8 @@ func _physics_process(delta):
 		Global.asteroidCount -= 1
 		queue_free()
 	pass
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("physicsRocket"):
+		rocket.health -= 1

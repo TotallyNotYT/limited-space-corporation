@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3vyhqb58fuwe"]
+
+[ext_resource type="Script" path="res://win_screen.gd" id="1_fir4h"]
+[ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="1_vithw"]
+[ext_resource type="PackedScene" uid="uid://bevnolydmc2k" path="res://physics_rocket.tscn" id="2_pvx7t"]
+[ext_resource type="Texture2D" uid="uid://b08ic6uocl8iv" path="res://Assets/background.svg" id="4_0k27i"]
+[ext_resource type="Texture2D" uid="uid://dyoxt5pc2ks0d" path="res://Assets/.explosion.svg" id="4_4cur0"]
+[ext_resource type="Texture2D" uid="uid://lb8uhra6f4t7" path="res://Assets/.asteroid1.svg" id="4_vqtdi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rr6d7"]
+radius = 256.236
+
+[node name="WinScreen" type="Node2D"]
+script = ExtResource("1_fir4h")
+
+[node name="StaticBodyStartPlanet" type="StaticBody2D" parent="."]
+position = Vector2(-401, 254)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyStartPlanet"]
+shape = SubResource("CircleShape2D_rr6d7")
+
+[node name="PlanetEarthlike" type="Sprite2D" parent="StaticBodyStartPlanet/CollisionShape2D"]
+texture = ExtResource("1_vithw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="physicsRocket" parent="." instance=ExtResource("2_pvx7t")]
+position = Vector2(-199, -2.00001)
+rotation = 0.644027
+
+[node name="WinHeader" type="Label" parent="."]
+offset_left = -62.0
+offset_top = -294.0
+offset_right = 558.0
+offset_bottom = -168.0
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "Congratulations, you win!"
+
+[node name="WinDesc" type="Label" parent="."]
+offset_left = -62.0
+offset_top = -186.0
+offset_right = 275.0
+offset_bottom = -149.0
+theme_type_variation = &"HeaderMedium"
+text = "Would you like to play again?"
+
+[node name="HomeButtonDesc" type="Label" parent="."]
+offset_left = 217.0
+offset_top = -4.0
+offset_right = 416.0
+offset_bottom = 34.0
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 20
+text = "Back to Homescreen"
+
+[node name="NewGameDesc" type="Label" parent="."]
+offset_left = -27.0
+offset_top = -4.0
+offset_right = 96.0
+offset_bottom = 34.0
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 20
+text = "Press to play"
+
+[node name="HomeButton" type="Button" parent="."]
+offset_left = 260.0
+offset_top = -106.0
+offset_right = 5064.0
+offset_bottom = 4551.0
+scale = Vector2(0.02, 0.02)
+icon = ExtResource("4_4cur0")
+
+[node name="NewGameButton" type="Button" parent="."]
+offset_left = -62.0
+offset_top = -107.0
+offset_right = 2410.0
+offset_bottom = 1155.0
+scale = Vector2(0.075, 0.075)
+icon = ExtResource("4_vqtdi")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_0k27i")
+
+[connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]

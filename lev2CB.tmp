@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://dy10dbtyr817n"]
+
+[ext_resource type="Script" path="res://level_flying.gd" id="1_04dgp"]
+[ext_resource type="Texture2D" uid="uid://c1fl7stpf6f2i" path="res://Assets/firemaybe2.svg" id="2_2o8rc"]
+[ext_resource type="Script" path="res://Border.gd" id="3_6bcki"]
+[ext_resource type="PackedScene" uid="uid://bevnolydmc2k" path="res://physics_rocket.tscn" id="4_unmml"]
+[ext_resource type="Texture2D" uid="uid://b08ic6uocl8iv" path="res://Assets/background.svg" id="5_cb22y"]
+[ext_resource type="Script" path="res://Timer.gd" id="6_hpknk"]
+[ext_resource type="PackedScene" uid="uid://jggh3fjnielu" path="res://asteroid.tscn" id="7_eac8v"]
+[ext_resource type="Texture2D" uid="uid://cntuvkmlbpie4" path="res://Assets/planetEarthlike.svg" id="8_6e1wn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvedx"]
+size = Vector2(2501.25, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upihe"]
+size = Vector2(3412, 399.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yr4dx"]
+radius = 515.004
+
+[node name="LevelFlying" type="Node2D"]
+script = ExtResource("1_04dgp")
+metadata/_edit_horizontal_guides_ = [648.0]
+metadata/_edit_vertical_guides_ = []
+
+[node name="RocketParticlesOld" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(123, 78)
+emitting = false
+amount = 50
+lifetime = 0.3
+texture = ExtResource("2_2o8rc")
+direction = Vector2(0, 1)
+spread = 24.92
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.42
+initial_velocity_max = 156.25
+scale_amount_min = 0.01
+scale_amount_max = 0.02
+
+[node name="Border" type="StaticBody2D" parent="."]
+script = ExtResource("3_6bcki")
+
+[node name="CollisionShapeRight" type="CollisionShape2D" parent="Border"]
+position = Vector2(1673, -604.625)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_wvedx")
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Border"]
+position = Vector2(-1673, -588.75)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_wvedx")
+
+[node name="CollisionShapeBottom" type="CollisionShape2D" parent="Border"]
+position = Vector2(1, 842)
+shape = SubResource("RectangleShape2D_upihe")
+
+[node name="physicsRocket" parent="." instance=ExtResource("4_unmml")]
+
+[node name="Camera2D" type="Camera2D" parent="physicsRocket"]
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="Layer1" type="ParallaxLayer" parent="Background"]
+scale = Vector2(2, 2)
+motion_mirroring = Vector2(0, 1826)
+
+[node name="Sprite" type="Sprite2D" parent="Background/Layer1"]
+texture = ExtResource("5_cb22y")
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Restart?"
+initial_position = 1
+ok_button_text = "Restart"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+script = ExtResource("6_hpknk")
+objectScene = ExtResource("7_eac8v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 648)
+shape = SubResource("CircleShape2D_yr4dx")
+
+[node name="PlanetEarthlike" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+scale = Vector2(2.01849, 2.01849)
+texture = ExtResource("8_6e1wn")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[connection signal="canceled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

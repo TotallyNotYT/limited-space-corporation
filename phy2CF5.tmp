@@ -39,6 +39,7 @@ script = ExtResource("1_kr0j0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.249117, 0.249117)
 sprite_frames = SubResource("SpriteFrames_56m65")
+animation = &"dead"
 
 [node name="RocketParticlesRight" type="CPUParticles2D" parent="."]
 show_behind_parent = true

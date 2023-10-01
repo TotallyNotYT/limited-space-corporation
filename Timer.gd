@@ -16,6 +16,11 @@ func spawn():
 	pass
 	
 func _on_timeout():
+
+	if rocket.position.y < -10000:
+		print("10000 reached")
+		stop()
+		
 	if rocket.position.y > -500:
 		return
 		

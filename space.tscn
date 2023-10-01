@@ -27,8 +27,8 @@ texture = ExtResource("3_0x275")
 offset = Vector2(-60.5665, -9.7688)
 
 [node name="PlanetEarthlike2" type="Sprite2D" parent="."]
-position = Vector2(937.667, 459.647)
-scale = Vector2(0.486598, 0.486598)
+position = Vector2(956, 464)
+scale = Vector2(0.512, 0.512)
 texture = ExtResource("3_0x275")
 
 [connection signal="pressed" from="TheSpaceButton" to="." method="_on_the_space_button_pressed"]
